@@ -10,20 +10,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	String dbId = "1";
-	String dbPwd = "1";
-	String inputId = request.getParameter("id");
-	String inputPwd = request.getParameter("pwd");
-	if(dbId.equals(inputId) && dbPwd.equals(inputPwd)){
-		out.print("인증통과");
-		
-	}else{
-		out.print("인증실패");
-	}
-	
-	
-%>
+	<c:set var='dbId' value="1" />
+	<c:set var='dbPwd' value="1" />
+	<c:set var='inputId' value="${param.id }" />
+	<c:set var='inputPwd' value="${param.pwd }" />
+	<c:if test="${dbId == inputId && dbPwd eq inputPwd }">
+	인증성공
+</c:if>
+	<c:if test="${dbId != inputId || dbPwd ne inputPwd }">
+	인증실패<c:redirect url="loginForm.jsp"/>
+</c:if>
+
 
 </body>
 </html>
